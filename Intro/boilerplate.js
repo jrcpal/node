@@ -11,10 +11,14 @@ const folderName = process.argv[2] || 'Project'
 
 // Using synchronous method to create a directory
 // this guarantees that the directory is created before the next line of code runs
-fs.mkdirSync(folderName, { recursive: true });
+try {
+  fs.mkdirSync(folderName, { recursive: true });
 
-fs.writeFileSync(`${folderName}/index.html`, '');
-fs.writeFileSync(`${folderName}/app.js`, '');
-fs.writeFileSync(`${folderName}/app.css`, '');
+  fs.writeFileSync(`${folderName}/index.html`, "");
+  fs.writeFileSync(`${folderName}/app.js`, "");
+  fs.writeFileSync(`${folderName}/app.css`, "");
+} catch (err) {
+  console.error(`Error creating directory: ${err}`);
+}
 
 console.log(`This is after the callback function`)
